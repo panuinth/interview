@@ -1,21 +1,42 @@
-def merge_sort(list)
-  return list if list.length < 2
-  left = list[0,list.length/2]
-  right = list[list.length/2, list.length]
-  merge(merge_sort(left), merge_sort(right))
+def quick_sort(array, from=0, to= array.length - 1)
 
-end
+  return if to < from
 
-def merge(left,right)
-  sorted_list = []
-  until left.empty? || right.empty?
-    sorted_list << (left[0] < right[0] ? left.shift : right.shift)
+  min = from
+  max = to
+  free = min
+  pivot = array[min]
+
+  while min < max
+    if free == min
+      if array[max] <= pivot
+        array[free] = array[max]
+        min += 1
+        free = max
+      else
+        max -= 1
+      end
+    elsif free == max
+      if array[min] >= pivot
+        array[free] = array[min]
+        max -= 1
+        free = min
+      else
+        min += 1
+      end
+
+    end
   end
-  sorted_list.concat(left).concat(right)
-  p sorted_list
 
+  quick_sort array, from, free - 1
+  quick_sort array, free + 1, to
 end
 
-list = [9, 0, 45, 3, 6, 7, 20, 19, 5]
-p list
-p merge_sort(list)
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].shuffle
+# Quicksort operates inplace (i.e. in "a" itself)
+# There's no need to reassign
+p a
+quick_sort a
+puts "quicksort"
+puts a.inspect
+
