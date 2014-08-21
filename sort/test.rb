@@ -1,21 +1,9 @@
-def merge_sort(list)
-  return list if list.length < 2
-  left = list[0,list.length/2]
-  right = list[list.length/2, list.length]
-  merge(merge_sort(left), merge_sort(right))
-
-end
-
-def merge(left,right)
-  sorted_list = []
-  until left.empty? || right.empty?
-    sorted_list << (left[0] < right[0] ? left.shift : right.shift)
+class Array
+  def bin_search(tf,left=0,right=length - 1)
+    mid = (left+right)/2
+    tf < self[mid] ? right = mid - 1 : left = mid + 1
+    tf == self[mid] ? mid : bin_search(tf, left, right)
   end
-  sorted_list.concat(left).concat(right)
-  p sorted_list
-
 end
 
-list = [9, 0, 45, 3, 6, 7, 20, 19, 5]
-p list
-p merge_sort(list)
+p (0..100).to_a.bin_search(66)

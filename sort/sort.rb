@@ -1,4 +1,9 @@
-# Sample implementation of quicksort and mergesort in ruby
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].shuffle
+# Quicksort operates inplace (i.e. in "a" itself)
+# There's no need to reassign
+quicksort a
+puts "quicksort"
+puts a# Sample implementation of quicksort and mergesort in ruby
 # Both algorithm sort in O(n * lg(n)) time
 # Quicksort works inplace, where mergesort works in a new array
 #The steps are:
