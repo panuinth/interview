@@ -7,3 +7,4 @@ class Array
 end
 
 p (0..100).to_a.bin_search(66)
+
